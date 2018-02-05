@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryApp.Web", "LibraryApp.Web\LibraryApp.Web.csproj", "{ED7677B1-CC4E-496A-BDA0-8593C91DC76A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryApp.DataAccess", "LibraryApp.DataAccess\LibraryApp.DataAccess.csproj", "{B112CFDF-4C00-432D-BB1C-30BCFADDE563}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{ED7677B1-CC4E-496A-BDA0-8593C91DC76A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED7677B1-CC4E-496A-BDA0-8593C91DC76A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED7677B1-CC4E-496A-BDA0-8593C91DC76A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B112CFDF-4C00-432D-BB1C-30BCFADDE563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B112CFDF-4C00-432D-BB1C-30BCFADDE563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B112CFDF-4C00-432D-BB1C-30BCFADDE563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B112CFDF-4C00-432D-BB1C-30BCFADDE563}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

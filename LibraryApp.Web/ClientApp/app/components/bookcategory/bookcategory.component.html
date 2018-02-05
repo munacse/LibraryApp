@@ -1,0 +1,16 @@
+﻿<h1>Book Category</h1>
+
+<p *ngIf="!bookCategory"><em>Loading...</em></p>
+
+<table class='table' *ngIf="bookCategory">
+    <thead>
+        <tr>
+            <th>Id</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of bookCategory">
+            <td>{{ item.name }}</td>
+        </tr>
+    </tbody>
+</table>
