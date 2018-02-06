@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\author\author.component.ts" />
     <None Remove="ClientApp\app\components\bookcategory\bookcategory.component.ts" />
   </ItemGroup>
 
@@ -33,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\author\author.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\bookcategory\bookcategory.component.ts" />
   </ItemGroup>
 

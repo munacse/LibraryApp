@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { BookCategoryComponent } from './components/bookcategory/bookcategory.component';
+import { AuthorComponent } from './components/author/author.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { BookCategoryComponent } from './components/bookcategory/bookcategory.co
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        BookCategoryComponent
+        BookCategoryComponent,
+        AuthorComponent
     ],
     imports: [
         CommonModule,
@@ -30,6 +32,7 @@ import { BookCategoryComponent } from './components/bookcategory/bookcategory.co
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'book-category', component: BookCategoryComponent },
+            { path: 'author', component: AuthorComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

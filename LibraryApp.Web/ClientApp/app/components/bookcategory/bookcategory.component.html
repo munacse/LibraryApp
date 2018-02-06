@@ -1,16 +1,26 @@
 ﻿<h1>Book Category</h1>
 
-<p *ngIf="!bookCategory"><em>Loading...</em></p>
+<p *ngIf="!bookCategorys"><em>Loading...</em></p>
 
-<table class='table' *ngIf="bookCategory">
+<table class='table' *ngIf="bookCategorys">
     <thead>
-        <tr>
-            <th>Id</th>
-        </tr>
+    <tr>
+        <th>Id</th>
+    </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of bookCategory">
-            <td>{{ item.name }}</td>
-        </tr>
+    <tr *ngFor="let item of bookCategorys">
+        <td>{{ item.name }}</td>
+    </tr>
     </tbody>
 </table>
+
+<form #bookCategoryForm="ngForm" (ngSubmit)="onSubmit()">
+    <input type="text"
+           class="form-control"
+           name="bookCategoryName"
+           [(ngModel)]="bookCategoryName"
+           required minlength="3" maxlength="20">
+    <pre>{{bookCategoryForm.value | json}}</pre>
+    <button type="submit" class="btn btn-primary" [disabled]="bookCategoryForm.invalid">Submit</button>
+</form>

@@ -1,0 +1,51 @@
+﻿<h1>Authors</h1>
+
+<p *ngIf="!authors"><em>Loading...</em></p>
+
+<table class='table' *ngIf="authors">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of authors">
+            <td>{{ item.name }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.phone }}</td>
+            <td>{{ item.address }}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<form #authorForm="ngForm" (ngSubmit)="onSubmit()">
+    <label>Name</label>
+    <input type="text"
+           class="form-control"
+           name="authorName"
+           [(ngModel)]="authorName"
+           required minlength="5" maxlength="20">
+    <label>Phone</label>
+    <input type="text"
+           class="form-control"
+           name="authorPhone"
+           [(ngModel)]="authorPhone"
+           required minlength="8" maxlength="20">
+    <label>Email</label>
+    <input type="email"
+           class="form-control"
+           name="authorEmail"
+           [(ngModel)]="authorEmail"
+           required pattern="[^ @]*@[^ @]*">
+    <label>Address</label>
+    <input type="text"
+           class="form-control"
+           name="authorAddress"
+           [(ngModel)]="authorAddress">
+    <pre>{{authorForm.value | json}}</pre>
+    <button type="submit" class="btn btn-primary" [disabled]="authorForm.invalid">Submit</button>
+</form>

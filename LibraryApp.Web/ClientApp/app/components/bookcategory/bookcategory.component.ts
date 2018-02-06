@@ -1,5 +1,6 @@
-﻿import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
+﻿import { Component, Inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'bookcategory',
@@ -8,8 +9,11 @@ import { Http } from '@angular/http';
 
 export class BookCategoryComponent implements OnInit, OnDestroy {
 
-    public bookCategory: BookCategory[];
+    public bookCategorys: IBookCategory[];
+    public bookCategoryModel: IBookCategory;
     public baseUrl: string;
+    public bookCategoryName: string = '';
+    @ViewChild('bookCategoryForm') bookCategoryForm: NgForm;
 
     constructor(private http: Http, @Inject('BASE_URL') baseUrl: string) {
 
@@ -18,23 +22,35 @@ export class BookCategoryComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+
         this.getBookCategory();
+
     }
 
     getBookCategory() {
 
         this.http.get(this.baseUrl + 'api/BookCategory/GetAllBookCategory').subscribe(result => {
-            this.bookCategory = result.json() as BookCategory[];
-        }, error => console.log(error))
+                this.bookCategorys = result.json() as IBookCategory[];
+            },
+            error => console.log(error));
     }
 
     ngOnDestroy() {
         //this.saveToDisk();
     }
 
+    onSubmit() {
+        
+        this.http.post(this.baseUrl + 'api/BookCategory', { name: this.bookCategoryName }).subscribe(result => {
+                this.bookCategorys = result.json() as IBookCategory[];
+            },
+            error => console.log(error));
+        this.bookCategoryForm.reset();
+    }
+
 }
 
-interface BookCategory {
+interface IBookCategory {
     id: string,
-    name: string
+    name: string,
 }

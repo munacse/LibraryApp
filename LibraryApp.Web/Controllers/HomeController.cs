@@ -23,7 +23,7 @@ namespace LibraryApp.Web.Controllers
         {
             //var bookCategory = new BookCategory
             //{
-            //    Name ="Drama"
+            //    Name = "Drama"
             //};
 
             //_unitOfWork.BookCategories.Add(bookCategory);
