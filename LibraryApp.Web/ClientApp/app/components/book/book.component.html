@@ -1,0 +1,57 @@
+﻿<h1>Authors</h1>
+
+<p *ngIf="!books"><em>Loading...</em></p>
+
+<table class='table' *ngIf="books">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Page</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of books">
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.page }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<form #bookForm="ngForm" (ngSubmit)="onSubmit()">
+    <label>Name</label>
+    <input type="text"
+           class="form-control"
+           name="bookName"
+           [(ngModel)]="bookName"
+           required minlength="5" maxlength="20">
+
+    <label>Price</label>
+    <input type="text"
+           class="form-control"
+           name="bookPrize"
+           [(ngModel)]="bookPrize"
+           required>
+    <label>Page</label>
+    <input type="text"
+           class="form-control"
+           name="bookPage"
+           [(ngModel)]="bookPage"
+           required>
+    <label>Author</label>
+    <div *ngIf="authors != null">
+        <select [(ngModel)]="authorId" name="authorId" class="form-control">
+            <option *ngFor="let x of authors" [ngValue]="x.id">{{x.name}}</option>
+        </select>
+    </div>
+    <label>Book Category</label>
+    <div *ngIf="bookCategorys != null">
+        <select [(ngModel)]="bookCategoryId" name="bookCategoryId" class="form-control">
+            <option *ngFor="let x of bookCategorys" [ngValue]="x.id">{{x.name}}</option>
+        </select>
+    </div>
+    <label>Value's</label>
+    <pre>{{bookForm.value | json}}</pre>
+    <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">Submit</button>
+</form>

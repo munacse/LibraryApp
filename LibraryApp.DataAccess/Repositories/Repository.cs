@@ -37,7 +37,7 @@ namespace LibraryApp.DataAccess.Repositories
 
         public virtual IEnumerable<TEntity> GetAll()
         {
-            return _entities.ToList();
+            return _entities.ToList(); 
         }
 
         public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)

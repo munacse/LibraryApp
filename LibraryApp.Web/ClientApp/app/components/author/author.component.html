@@ -46,6 +46,7 @@
            class="form-control"
            name="authorAddress"
            [(ngModel)]="authorAddress">
+    <label>Value's</label>
     <pre>{{authorForm.value | json}}</pre>
     <button type="submit" class="btn btn-primary" [disabled]="authorForm.invalid">Submit</button>
 </form>

@@ -1,6 +1,10 @@
 ﻿import { Component, Inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
 import { NgForm } from '@angular/forms';
+import { IAuthor } from "../../interfaces/author";
+import { AuthorService } from "../../services/author.service";
+import { Author } from "../../model/author.model";
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'author',
@@ -17,7 +21,11 @@ export class AuthorComponent implements OnInit, OnDestroy {
     public authorEmail: string = '';
     public authorAddress: string = '';
 
-    constructor(private http: Http, @Inject('BASE_URL') baseUrl: string) {
+    constructor(
+        private http: Http,
+        @Inject('BASE_URL') baseUrl: string,
+        private authorService: AuthorService
+    ) {
 
         this.baseUrl = baseUrl;
 
@@ -35,22 +43,24 @@ export class AuthorComponent implements OnInit, OnDestroy {
 
     getAuthors() {
 
-        this.http.get(this.baseUrl + 'api/Author/GetAllAuthor').subscribe(result => {
+        this.authorService.getAuthors().subscribe(result => {
             this.authors = result.json() as IAuthor[];
             },
-            error => console.log(error));
+            error => console.log(error)
+        );
 
     }
 
     onSubmit() {
+        
+        let author = {
+            name: this.authorName,
+            email: this.authorEmail,
+            phone: this.authorPhone,
+            address: this.authorAddress
+        };
 
-        this.http.post(this.baseUrl + 'api/Author',
-            {
-                name: this.authorName,
-                email: this.authorEmail,
-                phone: this.authorPhone,
-                address: this.authorAddress
-            }).subscribe(result => {
+        this.authorService.saveAuthor(author).subscribe(result => {
                 this.authors = result.json() as IAuthor[];
             },
             error => console.log(error));
@@ -58,12 +68,4 @@ export class AuthorComponent implements OnInit, OnDestroy {
 
     }
 
-}
-
-interface IAuthor {
-    id: string,
-    name: string,
-    email: string,
-    address: string,
-    phone: string,
 }

@@ -12,6 +12,10 @@ namespace LibraryApp.Web.DataTransferObjects
 
         public int Page { get; set; }
 
+        public Guid AuthorId { get; set; }
+
+        public Guid BookCategoryId { get; set; }
+
         public AuthorDto AuthorDto { get; set; }
 
         public BookCategoryDto BookCategoryDto { get; set; }

@@ -1,6 +1,8 @@
 ﻿import { Component, Inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
 import { NgForm } from '@angular/forms';
+import { IBookCategory } from "../../interfaces/bookCategory";
+import { BookCategoryService } from "../../services/bookcategory.service";
 
 @Component({
     selector: 'bookcategory',
@@ -15,7 +17,11 @@ export class BookCategoryComponent implements OnInit, OnDestroy {
     public bookCategoryName: string = '';
     @ViewChild('bookCategoryForm') bookCategoryForm: NgForm;
 
-    constructor(private http: Http, @Inject('BASE_URL') baseUrl: string) {
+    constructor(
+        private http: Http,
+        @Inject('BASE_URL') baseUrl: string,
+        private bookCategoryService: BookCategoryService)
+    {
 
         this.baseUrl = baseUrl;
 
@@ -29,7 +35,7 @@ export class BookCategoryComponent implements OnInit, OnDestroy {
 
     getBookCategory() {
 
-        this.http.get(this.baseUrl + 'api/BookCategory/GetAllBookCategory').subscribe(result => {
+        this.bookCategoryService.getBookCategory().subscribe(result => {
                 this.bookCategorys = result.json() as IBookCategory[];
             },
             error => console.log(error));
@@ -50,7 +56,7 @@ export class BookCategoryComponent implements OnInit, OnDestroy {
 
 }
 
-interface IBookCategory {
-    id: string,
-    name: string,
-}
+//interface IBookCategory {
+//    id: string,
+//    name: string,
+//}

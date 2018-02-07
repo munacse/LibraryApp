@@ -1,6 +1,7 @@
 ﻿using LibraryApp.DataAccess.Model;
 using LibraryApp.DataAccess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace LibraryApp.DataAccess.Repositories
 {
@@ -8,6 +9,14 @@ namespace LibraryApp.DataAccess.Repositories
     {
         public BookRepository(DbContext context) : base(context)
         { }
+
+        public IEnumerable<Book> GetAllBooksData()
+        {
+            return _appContext.Students
+                .Include(c => c.BookCategory).ThenInclude(o => o.Books)
+                .Include(c => c.Author).ThenInclude(o => o.Books)
+                ;
+        }
 
         private LibraryAppDbContext _appContext => (LibraryAppDbContext)_context;
     }
