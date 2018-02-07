@@ -2,6 +2,7 @@
 import { Http } from '@angular/http';
 import { NgForm } from '@angular/forms';
 import { IBookCategory } from "../../interfaces/bookCategory";
+import { BookCategory } from "../../model/bookcategory.model";
 import { BookCategoryService } from "../../services/bookcategory.service";
 
 @Component({
@@ -12,7 +13,7 @@ import { BookCategoryService } from "../../services/bookcategory.service";
 export class BookCategoryComponent implements OnInit, OnDestroy {
 
     public bookCategorys: IBookCategory[];
-    public bookCategoryModel: IBookCategory;
+    public bookCategoryModel: BookCategory;
     public baseUrl: string;
     public bookCategoryName: string = '';
     @ViewChild('bookCategoryForm') bookCategoryForm: NgForm;

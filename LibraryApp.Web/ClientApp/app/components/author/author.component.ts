@@ -14,6 +14,7 @@ export class AuthorComponent implements OnInit, OnDestroy {
 
     public baseUrl: string;
     public authors: IAuthor[];
+    public author: Author;
     @ViewChild('authorForm') authorForm: NgForm;
 
     public authorName: string = '';
