@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using LibraryApp.DataAccess;
 using LibraryApp.DataAccess.Model;
+using LibraryApp.Mongo.Interfaces;
+using LibraryApp.Mongo.Model;
 using LibraryApp.Web.DataTransferObjects;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,26 +15,52 @@ namespace LibraryApp.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private IUnitOfWork _unitOfWork;
+        private readonly INoteRepository _noteRepository;
 
-        public HomeController(IUnitOfWork unitOfWork)
+
+
+        public HomeController(INoteRepository noteRepository)
         {
-            _unitOfWork = unitOfWork;
+            _noteRepository = noteRepository;
         }
+
         public IActionResult Index()
         {
-            //var bookCategory = new BookCategory
+            //
+            //_noteRepository.AddNote(new Note()
             //{
-            //    Name = "Drama"
-            //};
-
-            //_unitOfWork.BookCategories.Add(bookCategory);
-            //_unitOfWork.SaveChanges();
-
-            var bookCategories = _unitOfWork.BookCategories.GetAll();
-
-            var bookCategoriesDto = Mapper.Map<IEnumerable<BookCategoryDto>>(bookCategories);
-
+            //    Id = "1",
+            //    Body = "Test note 1",
+            //    CreatedOn = DateTime.Now,
+            //    UpdatedOn = DateTime.Now,
+            //    UserId = 1
+            //});
+            //_noteRepository.AddNote(new Note()
+            //{
+            //    Id = "2",
+            //    Body = "Test note 2",
+            //    CreatedOn = DateTime.Now,
+            //    UpdatedOn = DateTime.Now,
+            //    UserId = 1
+            //});
+            //_noteRepository.AddNote(new Note()
+            //{
+            //    Id = "3",
+            //    Body = "Test note 3",
+            //    CreatedOn = DateTime.Now,
+            //    UpdatedOn = DateTime.Now,
+            //    UserId = 2
+            //});
+            //_noteRepository.AddNote(new Note()
+            //{
+            //    Id = "4",
+            //    Body = "Test note 4",
+            //    CreatedOn = DateTime.Now,
+            //    UpdatedOn = DateTime.Now,
+            //    UserId = 2
+            //});
+            //
+            var result = _noteRepository.GetAllNotes();
             return View();
         }
 

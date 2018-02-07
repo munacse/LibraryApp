@@ -41,6 +41,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LibraryApp.DataAccess\LibraryApp.DataAccess.csproj" />
+    <ProjectReference Include="..\LibraryApp.Mongo\LibraryApp.Mongo.csproj" />
   </ItemGroup>
 
   <ItemGroup>

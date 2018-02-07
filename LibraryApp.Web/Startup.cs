@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using LibraryApp.DataAccess;
+using LibraryApp.Mongo.Interfaces;
+using LibraryApp.Mongo.Model;
+using LibraryApp.Mongo.Repositories;
 using LibraryApp.Web.DataTransferObjects;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,19 +33,30 @@ namespace LibraryApp.Web
             services.AddMvc();
 
             //== Add DbContext =====
-            var connectionString = Configuration["connectionStrings:DefaultConnection"];
-            services.AddDbContext<LibraryAppDbContext>(o => o.UseSqlServer(connectionString));
+            //var connectionString = Configuration["connectionStrings:DefaultConnection"];
+            //services.AddDbContext<LibraryAppDbContext>(o => o.UseSqlServer(connectionString));
 
-            //== Add Identity =====
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<LibraryAppDbContext>()
-                .AddDefaultTokenProviders();
+            ////== Add Identity =====
+            //services.AddIdentity<IdentityUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<LibraryAppDbContext>()
+            //    .AddDefaultTokenProviders();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             Mapper.Initialize(cfg => {
                 cfg.AddProfile<AutoMapperProfile>();
             });
+
+
+            //Mongo
+            services.Configure<Settings>(options =>
+            {
+                options.ConnectionString
+                    = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+                options.Database
+                    = Configuration.GetSection("MongoConnection:Database").Value;
+            });
+            services.AddTransient<INoteRepository, NoteRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
