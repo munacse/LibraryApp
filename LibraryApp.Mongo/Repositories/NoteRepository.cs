@@ -14,9 +14,9 @@ namespace LibraryApp.Mongo.Repositories
     {
         private readonly NoteContext _context = null;
 
-        public NoteRepository(IOptions<Settings> settings)
+        public NoteRepository(NoteContext context)
         {
-            _context = new NoteContext(settings);
+            _context = context;
         }
 
         public async Task<IEnumerable<Note>> GetAllNotes()

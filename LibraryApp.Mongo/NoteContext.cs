@@ -22,5 +22,12 @@ namespace LibraryApp.Mongo
                 return _database.GetCollection<Note>("Note");
             }
         }
+        public IMongoCollection<Product> Products
+        {
+            get
+            {
+                return _database.GetCollection<Product>("Product");
+            }
+        }
     }
 }

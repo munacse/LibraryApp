@@ -15,13 +15,11 @@ namespace LibraryApp.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly INoteRepository _noteRepository;
+        private readonly IUnitOfWorkMongo _unitOfWorkMongo;
 
-
-
-        public HomeController(INoteRepository noteRepository)
+        public HomeController(IUnitOfWorkMongo unitOfWorkMongo)
         {
-            _noteRepository = noteRepository;
+            _unitOfWorkMongo = unitOfWorkMongo;
         }
 
         public IActionResult Index()
@@ -35,32 +33,18 @@ namespace LibraryApp.Web.Controllers
             //    UpdatedOn = DateTime.Now,
             //    UserId = 1
             //});
-            //_noteRepository.AddNote(new Note()
-            //{
-            //    Id = "2",
-            //    Body = "Test note 2",
-            //    CreatedOn = DateTime.Now,
-            //    UpdatedOn = DateTime.Now,
-            //    UserId = 1
-            //});
-            //_noteRepository.AddNote(new Note()
-            //{
-            //    Id = "3",
-            //    Body = "Test note 3",
-            //    CreatedOn = DateTime.Now,
-            //    UpdatedOn = DateTime.Now,
-            //    UserId = 2
-            //});
-            //_noteRepository.AddNote(new Note()
-            //{
-            //    Id = "4",
-            //    Body = "Test note 4",
-            //    CreatedOn = DateTime.Now,
-            //    UpdatedOn = DateTime.Now,
-            //    UserId = 2
-            //});
+            var product = new Product
+            {
+                Id = "2",
+                Name = "Colgate",
+                CompanyName = "Uniliver",
+                Price = 60,
+                EntryDate = DateTime.Now
+            };
+            _unitOfWorkMongo.ProductRepository.AddProduct(product);
             //
-            var result = _noteRepository.GetAllNotes();
+            var result = _unitOfWorkMongo.NoteRepository.GetAllNotes();
+            var productResult = _unitOfWorkMongo.ProductRepository.GetAllProducts();
             return View();
         }
 
