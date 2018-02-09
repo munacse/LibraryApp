@@ -1,0 +1,50 @@
+﻿
+<div class="container">
+    <h3 class="page-header">Create new employee</h3>
+   
+    <form #employeeForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="input-group col-sm-6">
+                <label>First Name</label>
+                <input type="text"
+                       class="form-control"
+                       name="employeeFirstName"
+                       [(ngModel)]="employeeFirstName"
+                       required minlength="5" maxlength="20">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-group col-sm-6">
+                <label>Last Name</label>
+                <input type="text"
+                       class="form-control"
+                       name="employeeLastName"
+                       [(ngModel)]="employeeLastName"
+                       required minlength="5" maxlength="20">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-group col-sm-6">
+                <label>Email</label>
+                <input type="text"
+                       class="form-control"
+                       name="employeeEmail"
+                       [(ngModel)]="employeeEmail"
+                       required pattern="[^ @]*@[^ @]*">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-group col-sm-6">
+                <label>Birth Date</label>
+                <input type="date"
+                       class="form-control datepicker"
+                       name="employeeBirthDate"
+                       [(ngModel)]="employeeBirthDate"
+                       required>
+            </div>
+        </div>
+        <label>Value's</label>
+        <pre>{{employeeForm.value | json}}</pre>
+        <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">Submit</button>
+    </form>
+</div>

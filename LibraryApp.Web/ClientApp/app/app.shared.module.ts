@@ -11,10 +11,12 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { BookCategoryComponent } from './components/bookcategory/bookcategory.component';
 import { AuthorComponent } from './components/author/author.component';
+import { EmployeeComponent } from './components/employee/employee-new.component';
 import { BookComponent } from './components/book/book.component';
 import { AuthorService } from './services/author.service';
 import { BookCategoryService } from './services/bookcategory.service';
 import { BookService } from './services/book.service';
+import { EmployeeService } from './services/employee.service';
 
 @NgModule({
     declarations: [
@@ -25,7 +27,8 @@ import { BookService } from './services/book.service';
         HomeComponent,
         BookCategoryComponent,
         AuthorComponent,
-        BookComponent
+        BookComponent,
+        EmployeeComponent
     ],
     imports: [
         CommonModule,
@@ -39,13 +42,15 @@ import { BookService } from './services/book.service';
             { path: 'book-category', component: BookCategoryComponent },
             { path: 'author', component: AuthorComponent },
             { path: 'book', component: BookComponent },
+            { path: 'employee-new', component: EmployeeComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ],
     providers: [
         AuthorService,
         BookCategoryService,
-        BookService
+        BookService,
+        EmployeeService
     ]
 })
 export class AppModuleShared {

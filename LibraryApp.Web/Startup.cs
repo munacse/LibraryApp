@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace LibraryApp.Web
 {
@@ -57,7 +58,14 @@ namespace LibraryApp.Web
                     = Configuration.GetSection("MongoConnection:Database").Value;
             });
             services.AddTransient<IUnitOfWorkMongo, UnitOfWorkMongo>();
-            //services.AddTransient<IProductRepository, ProductRepository>();
+
+
+
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Contacts API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,6 +96,13 @@ namespace LibraryApp.Web
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Contacts API V1");
+            });
+
         }
     }
 }

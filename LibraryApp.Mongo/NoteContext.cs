@@ -29,5 +29,12 @@ namespace LibraryApp.Mongo
                 return _database.GetCollection<Product>("Product");
             }
         }
+        public IMongoCollection<Employee> Employees
+        {
+            get
+            {
+                return _database.GetCollection<Employee>("Employee");
+            }
+        }
     }
 }

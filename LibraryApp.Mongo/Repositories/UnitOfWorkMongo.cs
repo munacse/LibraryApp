@@ -12,7 +12,8 @@ namespace LibraryApp.Mongo.Repositories
         private readonly NoteContext _context = null;
 
         IProductRepository _productRepository;
-        private INoteRepository _noteRepository;
+        INoteRepository _noteRepository;
+        IEmployeeRepository _employeeRepository;
 
         public UnitOfWorkMongo(IOptions<Settings> settings)
         {
@@ -41,5 +42,6 @@ namespace LibraryApp.Mongo.Repositories
             }
         }
 
+        public IEmployeeRepository EmployeeRepository => _employeeRepository ?? (_employeeRepository = new EmployeeRepository(_context));
     }
 }

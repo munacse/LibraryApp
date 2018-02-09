@@ -10,7 +10,6 @@ namespace LibraryApp.DataAccess
 
         IAuthorRepository Authors { get; }
 
-
         int SaveChanges();
     }
 }

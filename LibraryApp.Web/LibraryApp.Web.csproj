@@ -13,6 +13,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,15 +30,19 @@
     <None Remove="ClientApp\app\components\author\author.component.ts" />
     <None Remove="ClientApp\app\components\bookcategory\bookcategory.component.ts" />
     <None Remove="ClientApp\app\components\book\book.component.ts" />
+    <None Remove="ClientApp\app\components\employee\employee-new.component.ts" />
     <None Remove="ClientApp\app\interfaces\author.ts" />
     <None Remove="ClientApp\app\interfaces\book.ts" />
     <None Remove="ClientApp\app\interfaces\bookCategory.ts" />
+    <None Remove="ClientApp\app\interfaces\employee.ts" />
     <None Remove="ClientApp\app\model\author.model.ts" />
     <None Remove="ClientApp\app\model\book.model.ts" />
     <None Remove="ClientApp\app\model\bookcategory.model.ts" />
+    <None Remove="ClientApp\app\model\employee.model.ts" />
     <None Remove="ClientApp\app\services\author.service.ts" />
     <None Remove="ClientApp\app\services\book.service.ts" />
     <None Remove="ClientApp\app\services\bookcategory.service.ts" />
+    <None Remove="ClientApp\app\services\employee.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,15 +54,19 @@
     <TypeScriptCompile Include="ClientApp\app\components\author\author.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\bookcategory\bookcategory.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\book\book.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\employee\employee-new.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\interfaces\author.ts" />
     <TypeScriptCompile Include="ClientApp\app\interfaces\book.ts" />
     <TypeScriptCompile Include="ClientApp\app\interfaces\bookCategory.ts" />
+    <TypeScriptCompile Include="ClientApp\app\interfaces\employee.ts" />
     <TypeScriptCompile Include="ClientApp\app\model\author.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\model\book.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\model\bookcategory.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\model\employee.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\author.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\book.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\bookcategory.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\employee.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

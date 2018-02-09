@@ -5,5 +5,7 @@
         IProductRepository ProductRepository { get; }
 
         INoteRepository NoteRepository { get; }
+
+        IEmployeeRepository EmployeeRepository { get; }
     }
 }

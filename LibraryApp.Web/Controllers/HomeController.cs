@@ -24,6 +24,7 @@ namespace LibraryApp.Web.Controllers
 
         public IActionResult Index()
         {
+            var emmp = _unitOfWorkMongo.EmployeeRepository.GetAllEmployees();
             //
             //_noteRepository.AddNote(new Note()
             //{
@@ -33,15 +34,15 @@ namespace LibraryApp.Web.Controllers
             //    UpdatedOn = DateTime.Now,
             //    UserId = 1
             //});
-            var product = new Product
-            {
-                Id = "2",
-                Name = "Colgate",
-                CompanyName = "Uniliver",
-                Price = 60,
-                EntryDate = DateTime.Now
-            };
-            _unitOfWorkMongo.ProductRepository.AddProduct(product);
+            //var product = new Product
+            //{
+            //    Id = "2",
+            //    Name = "Colgate",
+            //    CompanyName = "Uniliver",
+            //    Price = 60,
+            //    EntryDate = DateTime.Now
+            //};
+            //_unitOfWorkMongo.ProductRepository.AddProduct(product);
             //
             var result = _unitOfWorkMongo.NoteRepository.GetAllNotes();
             var productResult = _unitOfWorkMongo.ProductRepository.GetAllProducts();
