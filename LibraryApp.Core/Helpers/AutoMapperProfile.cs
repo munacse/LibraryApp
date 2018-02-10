@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using LibraryApp.Core.DataTransferObjects;
 using LibraryApp.DataAccess.Model;
 
-namespace LibraryApp.Web.DataTransferObjects
+namespace LibraryApp.Core.Helpers
 {
     public class AutoMapperProfile : Profile
     {

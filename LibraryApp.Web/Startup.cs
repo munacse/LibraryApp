@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using LibraryApp.Core.Helpers;
+using LibraryApp.Core.Services;
+using LibraryApp.Core.Services.Interface;
 using LibraryApp.DataAccess;
 using LibraryApp.Mongo.Interfaces;
 using LibraryApp.Mongo.Model;
 using LibraryApp.Mongo.Repositories;
-using LibraryApp.Web.DataTransferObjects;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -34,20 +36,20 @@ namespace LibraryApp.Web
             services.AddMvc();
 
             //== Add DbContext =====
-            //var connectionString = Configuration["connectionStrings:DefaultConnection"];
-            //services.AddDbContext<LibraryAppDbContext>(o => o.UseSqlServer(connectionString));
+            var connectionString = Configuration["connectionStrings:DefaultConnection"];
+            services.AddDbContext<LibraryAppDbContext>(o => o.UseSqlServer(connectionString));
 
-            ////== Add Identity =====
-            //services.AddIdentity<IdentityUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<LibraryAppDbContext>()
-            //    .AddDefaultTokenProviders();
-
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //== Add Identity =====
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<LibraryAppDbContext>()
+                .AddDefaultTokenProviders();
 
             Mapper.Initialize(cfg => {
                 cfg.AddProfile<AutoMapperProfile>();
             });
+            
 
+            RegisterCoreServices(services);
 
             //Mongo
             services.Configure<Settings>(options =>
@@ -103,6 +105,14 @@ namespace LibraryApp.Web
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Contacts API V1");
             });
 
+        }
+
+        private void RegisterCoreServices(IServiceCollection services)
+        {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IAuthorService, AuthorService>();
+            services.AddScoped<IBookCategoryService, BookCategoryService>();
+            services.AddScoped<IBookService, BookService>();
         }
     }
 }

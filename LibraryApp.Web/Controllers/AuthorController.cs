@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using LibraryApp.DataAccess;
-using LibraryApp.DataAccess.Model;
-using LibraryApp.Web.DataTransferObjects;
+﻿using LibraryApp.Core.DataTransferObjects;
+using LibraryApp.Core.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryApp.Web.Controllers
@@ -13,35 +7,29 @@ namespace LibraryApp.Web.Controllers
     [Route("api/[controller]")]
     public class AuthorController : Controller
     {
-        private IUnitOfWork _unitOfWork;
+        private IAuthorService _authorService;
 
-        public AuthorController(IUnitOfWork unitOfWork)
+        public AuthorController(IAuthorService authorService)
         {
-            _unitOfWork = unitOfWork;
+            _authorService = authorService;
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<AuthorDto> GetAllAuthor()
+        public IActionResult GetAllAuthor()
         {
-            var authors = _unitOfWork.Authors.GetAll();
+            var authors = _authorService.GetAllAuthor();
 
-            var authorDto = Mapper.Map<IEnumerable<AuthorDto>>(authors);
-
-            return authorDto;
+            return Ok(authors);
         }
 
         [HttpPost]
-        public IEnumerable<AuthorDto> Post([FromBody]AuthorDto authorDto)
+        public IActionResult Post([FromBody]AuthorDto authorDto)
         {
-            var author = Mapper.Map<AuthorDto, Author>(authorDto);
-            _unitOfWork.Authors.Add(author);
-            _unitOfWork.SaveChanges();
+            _authorService.SaveAuthor(authorDto);
 
-            var authors = _unitOfWork.Authors.GetAll();
+            var authors = _authorService.GetAllAuthor();
 
-            var authorDtos = Mapper.Map<IEnumerable<AuthorDto>>(authors);
-
-            return authorDtos;
+            return Ok(authors);
         }
 
     }

@@ -8,7 +8,6 @@ using LibraryApp.DataAccess;
 using LibraryApp.DataAccess.Model;
 using LibraryApp.Mongo.Interfaces;
 using LibraryApp.Mongo.Model;
-using LibraryApp.Web.DataTransferObjects;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryApp.Web.Controllers
@@ -17,14 +16,16 @@ namespace LibraryApp.Web.Controllers
     {
         private readonly IUnitOfWorkMongo _unitOfWorkMongo;
 
-        public HomeController(IUnitOfWorkMongo unitOfWorkMongo)
+        public HomeController(
+            //IUnitOfWorkMongo unitOfWorkMongo
+            )
         {
-            _unitOfWorkMongo = unitOfWorkMongo;
+            //_unitOfWorkMongo = unitOfWorkMongo;
         }
 
         public IActionResult Index()
         {
-            var emmp = _unitOfWorkMongo.EmployeeRepository.GetAllEmployees();
+            //var emmp = _unitOfWorkMongo.EmployeeRepository.GetAllEmployees();
             //
             //_noteRepository.AddNote(new Note()
             //{
@@ -44,8 +45,8 @@ namespace LibraryApp.Web.Controllers
             //};
             //_unitOfWorkMongo.ProductRepository.AddProduct(product);
             //
-            var result = _unitOfWorkMongo.NoteRepository.GetAllNotes();
-            var productResult = _unitOfWorkMongo.ProductRepository.GetAllProducts();
+            //var result = _unitOfWorkMongo.NoteRepository.GetAllNotes();
+            //var productResult = _unitOfWorkMongo.ProductRepository.GetAllProducts();
             return View();
         }
 

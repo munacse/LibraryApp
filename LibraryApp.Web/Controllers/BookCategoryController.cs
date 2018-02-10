@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using LibraryApp.DataAccess;
-using LibraryApp.DataAccess.Model;
-using LibraryApp.Web.DataTransferObjects;
+﻿using LibraryApp.Core.DataTransferObjects;
+using LibraryApp.Core.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryApp.Web.Controllers
@@ -13,35 +7,29 @@ namespace LibraryApp.Web.Controllers
     [Route("api/[controller]")]
     public class BookCategoryController : Controller
     {
-        private IUnitOfWork _unitOfWork;
+        private IBookCategoryService _bookCategoryService;
 
-        public BookCategoryController(IUnitOfWork unitOfWork)
+        public BookCategoryController(IBookCategoryService bookCategoryService)
         {
-            _unitOfWork = unitOfWork;
+            _bookCategoryService = bookCategoryService;
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<BookCategoryDto> GetAllBookCategory()
+        public IActionResult GetAllBookCategory()
         {
-            var bookCategories = _unitOfWork.BookCategories.GetAll();
+            var bookCategories = _bookCategoryService.GetAllBookCategory();
 
-            var bookCategoriesDto = Mapper.Map<IEnumerable<BookCategoryDto>>(bookCategories);
-
-            return bookCategoriesDto;
+            return Ok(bookCategories);
         }
 
         [HttpPost]
-        public IEnumerable<BookCategoryDto> Post([FromBody]BookCategoryDto bookCategoryDto)
+        public IActionResult Post([FromBody]BookCategoryDto bookCategoryDto)
         {
-            var bookCategory = Mapper.Map<BookCategoryDto, BookCategory>(bookCategoryDto);
-            _unitOfWork.BookCategories.Add(bookCategory);
-            _unitOfWork.SaveChanges();
+            _bookCategoryService.SaveBookCategory(bookCategoryDto);
 
-            var bookCategories = _unitOfWork.BookCategories.GetAll();
+            var bookCategories = _bookCategoryService.GetAllBookCategory();
 
-            var bookCategoriesDto = Mapper.Map<IEnumerable<BookCategoryDto>>(bookCategories);
-
-            return bookCategoriesDto;
+            return Ok(bookCategories);
         }
     }
 }

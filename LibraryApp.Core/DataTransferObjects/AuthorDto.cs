@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace LibraryApp.Web.DataTransferObjects
+namespace LibraryApp.Core.DataTransferObjects
 {
     public class AuthorDto
     {
