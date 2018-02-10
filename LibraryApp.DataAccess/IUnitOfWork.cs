@@ -1,4 +1,5 @@
 ﻿using LibraryApp.DataAccess.Repositories.Interfaces;
+using System.Threading.Tasks;
 
 namespace LibraryApp.DataAccess
 {
@@ -10,6 +11,6 @@ namespace LibraryApp.DataAccess
 
         IAuthorRepository Authors { get; }
 
-        int SaveChanges();
+        Task<int> SaveChanges();
     }
 }

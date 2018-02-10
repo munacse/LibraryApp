@@ -1,5 +1,6 @@
 ﻿using LibraryApp.Core.DataTransferObjects;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LibraryApp.Core.Services.Interface
 {
@@ -7,6 +8,6 @@ namespace LibraryApp.Core.Services.Interface
     {
         IEnumerable<BookDto> GetAllBook();
 
-        bool SaveBook(BookDto bookDto);
+        Task<bool> SaveBook(BookDto bookDto);
     }
 }

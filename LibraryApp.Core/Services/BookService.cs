@@ -4,6 +4,7 @@ using LibraryApp.Core.Services.Interface;
 using LibraryApp.DataAccess;
 using LibraryApp.DataAccess.Model;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LibraryApp.Core.Services
 {
@@ -25,17 +26,17 @@ namespace LibraryApp.Core.Services
             return bookDto;
         }
 
-        public bool SaveBook(BookDto bookDto)
+        public async Task<bool> SaveBook(BookDto bookDto)
         {
-            var author = _unitOfWork.Authors.Get(bookDto.AuthorId);
-            var bookCategory = _unitOfWork.BookCategories.Get(bookDto.BookCategoryId);
+            var author = await _unitOfWork.Authors.Get(bookDto.AuthorId);
+            var bookCategory = await _unitOfWork.BookCategories.Get(bookDto.BookCategoryId);
             var book = Mapper.Map<BookDto, Book>(bookDto);
 
             book.Author = author;
             book.BookCategory = bookCategory;
 
-            _unitOfWork.Books.Add(book);
-            _unitOfWork.SaveChanges();
+            await _unitOfWork.Books.Add(book);
+            await _unitOfWork.SaveChanges();
 
             return true;
         }

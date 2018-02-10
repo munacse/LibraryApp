@@ -1,6 +1,7 @@
 ﻿using LibraryApp.Core.DataTransferObjects;
 using LibraryApp.Core.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace LibraryApp.Web.Controllers
 {
@@ -15,19 +16,19 @@ namespace LibraryApp.Web.Controllers
         }
 
         [HttpGet("[action]")]
-        public IActionResult GetAllBookCategory()
+        public async Task<IActionResult> GetAllBookCategory()
         {
-            var bookCategories = _bookCategoryService.GetAllBookCategory();
+            var bookCategories = await _bookCategoryService.GetAllBookCategory();
 
             return Ok(bookCategories);
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]BookCategoryDto bookCategoryDto)
+        public async Task<IActionResult> Post([FromBody]BookCategoryDto bookCategoryDto)
         {
-            _bookCategoryService.SaveBookCategory(bookCategoryDto);
+            await _bookCategoryService.SaveBookCategory(bookCategoryDto);
 
-            var bookCategories = _bookCategoryService.GetAllBookCategory();
+            var bookCategories = await _bookCategoryService.GetAllBookCategory();
 
             return Ok(bookCategories);
         }

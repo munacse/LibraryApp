@@ -7,18 +7,18 @@ namespace LibraryApp.DataAccess.Repositories.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        void Add(TEntity entity);
+        Task Add(TEntity entity);
 
         void Update(TEntity entity);
 
         void Remove(TEntity entity);
 
-        IEnumerable<TEntity> GetAll();
+        Task<IEnumerable<TEntity>> GetAll();
 
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
 
         TEntity GetSingleOrDefault(Expression<Func<TEntity, bool>> predicate);
 
-        TEntity Get(Guid id);
+        Task<TEntity> Get(Guid id);
     }
 }

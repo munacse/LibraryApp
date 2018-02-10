@@ -20,9 +20,9 @@ namespace LibraryApp.DataAccess.Repositories
             _entities = context.Set<TEntity>();
         }
 
-        public virtual void Add(TEntity entity)
+        public virtual async Task Add(TEntity entity)
         {
-            _entities.Add(entity);
+            await _entities.AddAsync(entity);
         }
 
         public virtual void Update(TEntity entity)
@@ -35,9 +35,9 @@ namespace LibraryApp.DataAccess.Repositories
             _entities.Remove(entity);
         }
 
-        public virtual IEnumerable<TEntity> GetAll()
+        public virtual async Task<IEnumerable<TEntity>> GetAll()
         {
-            return _entities.ToList(); 
+            return await _entities.ToListAsync(); 
         }
 
         public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
@@ -50,9 +50,9 @@ namespace LibraryApp.DataAccess.Repositories
             return _entities.SingleOrDefault(predicate);
         }
 
-        public virtual TEntity Get(Guid id)
+        public virtual async Task<TEntity> Get(Guid id)
         {
-            return _entities.Find(id);
+            return await _entities.FindAsync(id);
         }
     }
 }

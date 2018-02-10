@@ -1,6 +1,7 @@
 ﻿using LibraryApp.Core.DataTransferObjects;
 using LibraryApp.Core.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace LibraryApp.Web.Controllers
 {
@@ -15,19 +16,19 @@ namespace LibraryApp.Web.Controllers
         }
 
         [HttpGet("[action]")]
-        public IActionResult GetAllAuthor()
+        public async Task<IActionResult> GetAllAuthor()
         {
-            var authors = _authorService.GetAllAuthor();
+            var authors = await _authorService.GetAllAuthor();
 
             return Ok(authors);
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]AuthorDto authorDto)
+        public async Task<IActionResult> Post([FromBody]AuthorDto authorDto)
         {
-            _authorService.SaveAuthor(authorDto);
+            await _authorService.SaveAuthor(authorDto);
 
-            var authors = _authorService.GetAllAuthor();
+            var authors = await _authorService.GetAllAuthor();
 
             return Ok(authors);
         }

@@ -1,6 +1,7 @@
 ﻿using LibraryApp.Core.DataTransferObjects;
 using LibraryApp.Core.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace LibraryApp.Web.Controllers
 {
@@ -23,9 +24,9 @@ namespace LibraryApp.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]BookDto bookDto)
+        public async Task<IActionResult> Post([FromBody]BookDto bookDto)
         {
-            _bookService.SaveBook(bookDto);
+            await _bookService.SaveBook(bookDto);
 
             var books = _bookService.GetAllBook();
 

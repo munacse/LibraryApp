@@ -1,8 +1,6 @@
 ﻿using LibraryApp.DataAccess.Repositories;
 using LibraryApp.DataAccess.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace LibraryApp.DataAccess
 {
@@ -15,7 +13,10 @@ namespace LibraryApp.DataAccess
         IAuthorRepository _authors;
 
 
-
+        public UnitOfWork()
+        {
+            
+        }
         public UnitOfWork(LibraryAppDbContext context)
         {
             _context = context;
@@ -63,9 +64,9 @@ namespace LibraryApp.DataAccess
 
 
 
-        public int SaveChanges()
+        public async Task<int> SaveChanges()
         {
-            return _context.SaveChanges();
+            return await _context.SaveChangesAsync();
         }
     }
 }

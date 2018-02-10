@@ -1,15 +1,16 @@
 ﻿using LibraryApp.Core.DataTransferObjects;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LibraryApp.Core.Services.Interface
 {
     public interface IAuthorService
     {
-        IEnumerable<AuthorDto> GetAllAuthor();
+        Task<IEnumerable<AuthorDto>> GetAllAuthor();
 
-        bool SaveAuthor(AuthorDto authorDto);
+        Task<bool> SaveAuthor(AuthorDto authorDto);
 
-        AuthorDto GetAuthor(Guid id);
+        Task<AuthorDto> GetAuthor(Guid id);
     }
 }
